@@ -180,9 +180,9 @@ def sk_to_wif(sk, compressed=True, mode='image', v='test'):
     wif = b58encode(wif)
 
     # Choose the proper return mode depending on 'mode'.
-    if mode is 'image':
+    if mode == 'image':
         response = qr_make(wif)
-    elif mode is 'text':
+    elif mode == 'text':
         response = wif
     else:
         raise Exception("Invalid mode, used either 'image' or 'text'.")
@@ -218,9 +218,9 @@ def generate_wif(btc_addr, sk, mode='image', v='test', vault_path=None):
     if not path.exists(vault_path + btc_addr):
         mkdir(vault_path + btc_addr)
 
-    if mode is 'image':
+    if mode == 'image':
         wif.save(vault_path + btc_addr + "/WIF.png")
-    elif mode is 'text':
+    elif mode == 'text':
         f = file(vault_path + btc_addr + "/WIF.txt", 'w')
         f.write(wif)
     else:
